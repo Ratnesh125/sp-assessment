@@ -18,14 +18,9 @@ export function LabeledSelect({ labelText, options }) {
     const handleSelectChange = (e) => {
         const selectedValue = e.target.value;
         setSelectedOption(selectedValue);
-        if (selectedValue === "Add") {
-            return <Card2 />;
-        } else {
-            return null;
-        }
     };
     return (
-        <div className="w-full px-3 mb-2">
+        <div className="w-full mb-2">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 {labelText}
             </label>
@@ -47,6 +42,10 @@ export function LabeledSelect({ labelText, options }) {
 }
 
 export function Subtopic() {
+    const [toggle, setToggle] = React.useState(false);
+    const handleSelectChange = (e) => {
+        setToggle(true);
+    };
     return (
         <div className="w-full mt-2">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -54,8 +53,9 @@ export function Subtopic() {
             </label>
             <div className="flex">
                 <input className="appearance-none block w-3/5 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="enter new sub-topic" />
-                <span className="ml-2 mt-2 font-semibold font-sm text-purple-500 dark:text-purple-500 hover:underline">Add new subtopic</span>
+                <span className="ml-2 mt-2 font-semibold font-sm text-purple-500 dark:text-purple-500 hover:underline" onClick={handleSelectChange}>Add new subtopic</span>
             </div>
+            {(toggle == true) && <Subtopic />}
         </div>
     );
 }
